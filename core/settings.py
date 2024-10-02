@@ -13,6 +13,9 @@ import os
 
 from pathlib import Path
 
+import dj_database_url
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -74,13 +77,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-       # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': os.path.join('/tmp', 'db.sqlite3'),  # Diretório temporário no ambiente Vercel
+        'NAME': BASE_DIR / 'db.sqlite3',
+       # 'NAME': os.path.join('/tmp', 'db.sqlite3'),  # Diretório temporário no ambiente Vercel
 
     }
+}
+"""
+
+DATABASES = {
+    'default': dj_database_url.parse('postgres://default:Z4Pj5QoeGXqB@ep-blue-cherry-a4i5z3ra.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require')
 }
 
 
